@@ -22,4 +22,12 @@ public class Product  implements Serializable {
     public void setValue(Double value) {
         this.value = value;
     }
+
+    public Product() {}
+
+    public Product(String name, Double value) {
+        this.name = name;
+        this.value = value;
+    }
+
 }

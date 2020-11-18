@@ -92,38 +92,38 @@ public class fileUtils {
         return rtn;
     }
 
-    public ConfigValues loadProperties(String path){
-        try{
-            ConfigValues configValues = new ConfigValues();
-            Properties properties = new Properties();
-            properties.load(new FileInputStream(path));
-            configValues.setName(properties.getProperty(ConfigurationProperties.configurationProperties.Name.toString()));
-            configValues.setPassword(properties.getProperty(ConfigurationProperties.configurationProperties.Password.toString()));
-            configValues.setPort(properties.getProperty(ConfigurationProperties.configurationProperties.Port.toString()));
-            configValues.setServer(properties.getProperty(ConfigurationProperties.configurationProperties.Server.toString()));
-            return configValues;
+//    public ConfigValues loadProperties(String path){
+//        try{
+//            ConfigValues configValues = new ConfigValues();
+//            Properties properties = new Properties();
+//            properties.load(new FileInputStream(path));
+//            configValues.setName(properties.getProperty(ConfigurationProperties.configurationProperties.Name.toString()));
+//            configValues.setPassword(properties.getProperty(ConfigurationProperties.configurationProperties.Password.toString()));
+//            configValues.setPort(properties.getProperty(ConfigurationProperties.configurationProperties.Port.toString()));
+//            configValues.setServer(properties.getProperty(ConfigurationProperties.configurationProperties.Server.toString()));
+//            return configValues;
+//
+//        }catch (Exception e ){
+//            fileUtils.Log.error("loading props", e);
+//            return null;
+//        }
+//
+//
+//    }
 
-        }catch (Exception e ){
-            fileUtils.Log.error("loading props", e);
-            return null;
-        }
-
-
-    }
-
-    public void saveProperties(ConfigValues data, String path) {
-        try {
-            Properties properties = new Properties();
-            properties.setProperty(ConfigurationProperties.configurationProperties.Name.toString(), data.getName());
-            properties.setProperty(ConfigurationProperties.configurationProperties.Password.toString(), data.getPassword());
-            properties.setProperty(ConfigurationProperties.configurationProperties.Server.toString(), data.getServer());
-            properties.setProperty(ConfigurationProperties.configurationProperties.Port.toString(), data.getPort());
-            properties.store(new FileOutputStream(path), "Properties file.");
-            // TODO 26/10/2020 asoto: Esto es muerte
-        } catch (Exception e) {
-            fileUtils.Log.error("Saving properties.", e);
-        }
-    }
+//    public void saveProperties(ConfigValues data, String path) {
+//        try {
+//            Properties properties = new Properties();
+//            properties.setProperty(ConfigurationProperties.configurationProperties.Name.toString(), data.getName());
+//            properties.setProperty(ConfigurationProperties.configurationProperties.Password.toString(), data.getPassword());
+//            properties.setProperty(ConfigurationProperties.configurationProperties.Server.toString(), data.getServer());
+//            properties.setProperty(ConfigurationProperties.configurationProperties.Port.toString(), data.getPort());
+//            properties.store(new FileOutputStream(path), "Properties file.");
+//            // TODO 26/10/2020 asoto: Esto es muerte
+//        } catch (Exception e) {
+//            fileUtils.Log.error("Saving properties.", e);
+//        }
+//    }
 
 //    public static File productsXml(List<Product> products){
 //        File file = null;

@@ -1,29 +1,36 @@
 package com.fbmoll.sandbox.sayHiStudents.controller;
 
 import com.fbmoll.sandbox.sayHiStudents.data.Student;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.fbmoll.sandbox.sayHiStudents.data.helpers.FileDataSingleton;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
+import javax.xml.ws.Response;
+import java.util.*;
 
 @RestController
 public class MyRestController {
 
-    @GetMapping("/GetStudent")
-    public Student getStudent(@RequestParam(value = "name", defaultValue = "pepito") String name) {
+    private Logger log = LoggerFactory.getLogger(FileDataSingleton.class);
+
+    @GetMapping("/getStudent")
+    public Student getStudent(@RequestParam(value = "name", defaultValue = "pepito22") String name) {
 
         Student aux = new Student();
         aux.setName(name);
-        aux.setMark("8");
+        aux.setMark(name.length());
         return aux;
 
     }
 
-    @GetMapping("/CreateStudents")
-    public List<Student> CreateStudent(@RequestParam(value = "q", defaultValue = "1") Integer nStudents) {
+    @GetMapping("/createStudents")
+    public List<Student> createStudent(@RequestParam(value = "q", defaultValue = "1") Integer nStudents) {
 
         ArrayList<Student> arrData = new ArrayList<>();
 
@@ -36,4 +43,27 @@ public class MyRestController {
     return  arrData;
 
     }
+
+
+    @RequestMapping(value = "/base"
+            , method = RequestMethod.GET
+            , produces = MediaType.APPLICATION_JSON_VALUE)
+    public Response<Map> getData(@RequestParam(value = "q", defaultValue = "1")
+                                             Integer numParams){
+        try {
+            Map<String, Object> map = new HashMap<>();
+            for (int i = 0; i < numParams; i++) {
+                map.put("key"+i, "pepito"+i);
+            }
+            String[] arr = {"asd","123"};
+            map.put("arrDAta", CollectionUtils.arrayToList(arr));
+            return  new ResponseEntity<>(map, HttpStatus.OK);
+        } catch (Exception e){
+            log.error("register:get/",e);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+
 }

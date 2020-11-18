@@ -110,7 +110,7 @@ public class FileDataSingleton {
             DummyUtils dummyUtils = new DummyUtils();
             List<Product> products = dummyUtils.getProducts();
             for (Product item : products){
-                Element aux = doc.createElement(item.getName());
+                Element aux = doc.createElement("holas");
                 aux.setAttribute("value",item.getValue().toString());
                 aux.setTextContent(item.getName());
                 rootElement.appendChild(aux);

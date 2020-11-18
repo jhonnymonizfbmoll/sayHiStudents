@@ -19,8 +19,8 @@ public class Student {
         return mark;
     }
 
-    public void setMark(String mark) {
-        this.mark = mark;
+    public void setMark(int mark) {
+        this.mark = String.valueOf(mark);
     }
 
     public Date getBornDate() {

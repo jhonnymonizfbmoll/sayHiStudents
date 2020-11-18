@@ -22,7 +22,7 @@ public class DataAccessFileApplicationTest {
     void generateXMLDocument(){
         FileDataSingleton fileDataSingleton = FileDataSingleton.getInstance();
         Document document = fileDataSingleton.generateRandomProductXML();
-        String fileName = String.format("%s\\.fbmoll\\classic.xml", System.getProperty("user.home"));
+        String fileName = String.format("%s\\classic.xml", System.getProperty("user.home"));
         File file = fileDataSingleton.saveDocumentAsFile(fileName,document,true);
         Assert.notNull(file, "El fichero no puede ser nulo.");
 
